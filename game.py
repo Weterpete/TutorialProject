@@ -53,20 +53,19 @@ class Game:
                 tiles = []
                 for i in range(0, len(line) - 1, 2):
                     tiles.append(line[i])
-                self.map.append([tiles])
+                self.map.append(tiles)
             print(self.map)
-            input()
 
     def renderMap(self, screen):
         y_pos = 0
         for line in self.map:
             x_pos = 0
             for tile in line:
-                image = mapTileImage(tile)
+                image = mapTileImage[tile]
                 rect = pygame.Rect(x_pos * config.SCALE, y_pos * config.SCALE, config.SCALE, config.SCALE)
+                screen.blit(image, rect)
                 x_pos = x_pos + 1
             y_pos = y_pos + 1
-        screen.blit(self.image, self.rect)
 
 mapTileImage = {
     "G" : pygame.transform.scale(pygame.image.load("imgs/grass1.png"), (config.SCALE, config.SCALE))
