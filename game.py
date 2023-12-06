@@ -1,6 +1,7 @@
 import pygame
 import config
 import math
+import random
 from player import Player
 from game_state import GameState
 
@@ -60,9 +61,11 @@ class Game:
                     self.move_unit(self.player, [1, 0])
                     # old = self.player.update_position(1, 0)
                 elif event.key == pygame.K_f:
+                    config.gameOrigin = random.randint(1,2)
                     config.gender = "f"
                     print("girl mode")
                 elif event.key == pygame.K_m:
+                    config.gameOrigin = random.randint(1,2)
                     config.gender = "m"
                     print("boy mode")
 
