@@ -8,3 +8,4 @@ SCREEN_HEIGHT = 480
 SCREEN_WIDTH = 640
 
 gender = "m"
+gameOrigin = "1"
