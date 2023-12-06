@@ -46,6 +46,12 @@ class Game:
                     self.player.update_position(-1, 0)
                 elif event.key == pygame.K_RIGHT:
                     self.player.update_position(1, 0)
+                elif event.key == pygame.K_f:
+                    config.gender = "f"
+                    print("girl mode")
+                elif event.key == pygame.K_m:
+                    config.gender = "m"
+                    print("boy mode")
 
     def loadMap(self, file_name):
         with open("maps/" + file_name + ".txt") as map_file:
@@ -68,5 +74,6 @@ class Game:
             y_pos = y_pos + 1
 
 mapTileImage = {
-    "G" : pygame.transform.scale(pygame.image.load("imgs/grass1.png"), (config.SCALE, config.SCALE))
+    "G" : pygame.transform.scale(pygame.image.load("imgs/grass1.png"), (config.SCALE, config.SCALE)),
+    "W": pygame.transform.scale(pygame.image.load("imgs/water.png"), (config.SCALE, config.SCALE))
 }
