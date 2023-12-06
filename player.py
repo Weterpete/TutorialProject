@@ -16,7 +16,7 @@ class Player:
     self.position[1] = new_position[1]
 
   def render(self, screen, camera):
-    self.image = pygame.image.load(f"imgs/player{config.gameOrigin}{config.gender}.png")
+    self.image = pygame.image.load(f"imgs/player{config.gender}{config.gameOrigin}.png")
     self.image = pygame.transform.scale(self.image, (config.SCALE, config.SCALE))
     self.rect = pygame.Rect(self.position[0] * config.SCALE, self.position[1] * config.SCALE - (camera[1] * config.SCALE), config.SCALE, config.SCALE)
     screen.blit(self.image, self.rect)
