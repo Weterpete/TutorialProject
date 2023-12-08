@@ -9,3 +9,7 @@ SCREEN_WIDTH = 640
 
 gender = "m"
 gameOrigin = "1"
+
+MAP_TILE_GRASS = "G"
+MAP_TILE_WATER = "W"
+MAP_TILE_PATH = "P"

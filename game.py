@@ -2,8 +2,10 @@ import pygame
 import config
 import math
 import random
+import utilities
 from player import Player
 from game_state import GameState
+from pokemonfactory import PokemonFactory
 
 class Game:
     def __init__(self, screen):
@@ -13,6 +15,7 @@ class Game:
         self.map = []
         self.camera = [0, 0]
         self.playerHasMoved = False
+        self.pokemon_factory = PokemonFactory()
 
     def set_up(self):
         player = Player(1, 26)
@@ -39,6 +42,18 @@ class Game:
     def determine_game_events(self):
         mapTile = self.map[self.player.position[1]][self.player.position[0]]
         print(mapTile)
+        if mapTile == config.MAP_TILE_PATH:
+            return
+        self.determine_pokemon_found(mapTile)
+
+    def determine_pokemon_found(self, mapTile):
+        randomNumber = utilities.generate_random_number(1, 10)
+
+        if randomNumber <= 1:
+            foundPokemon = self.pokemon_factory.create_pokemon(mapTile)
+            print("A wild pokemon appeared!")
+            print(f"Type: {foundPokemon.type}")
+            print(f"Its stats are {foundPokemon.health}, {foundPokemon.attack}, {foundPokemon.defense}, {foundPokemon.specialAttack}, {foundPokemon.specialDefense}, {foundPokemon.speed}")
 
     def handleEvents(self):
         for event in pygame.event.get():
@@ -96,7 +111,7 @@ class Game:
             return
         if new_position[1] < 0 or new_position[1] > (len(self.map) - 1):
             return
-        if self.map[new_position[1]][new_position[0]] == "W":
+        if self.map[new_position[1]][new_position[0]] == config.MAP_TILE_WATER:
             return
         self.playerHasMoved = True
         unit.update_position(new_position)
@@ -115,5 +130,6 @@ class Game:
 
 mapTileImage = {
     "G" : pygame.transform.scale(pygame.image.load("imgs/grass2.png"), (config.SCALE, config.SCALE)),
-    "W": pygame.transform.scale(pygame.image.load("imgs/water.png"), (config.SCALE, config.SCALE))
+    "W": pygame.transform.scale(pygame.image.load("imgs/water.png"), (config.SCALE, config.SCALE)),
+    "P": pygame.transform.scale(pygame.image.load("imgs/path.png"), (config.SCALE, config.SCALE))
 }
