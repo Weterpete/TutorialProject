@@ -62,19 +62,15 @@ class Game:
             # handle key events
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
-                    self.game_state = GameState.ENDED
+                    self.game_state = GameState.NONE
                 elif event.key == pygame.K_UP or event.key == pygame.K_w:
                     self.move_unit(self.player, [0, -1])
-                    # old = self.player.update_position(0, -1)
                 elif event.key == pygame.K_DOWN or event.key == pygame.K_s:
                     self.move_unit(self.player, [0, 1])
-                    # old = self.player.update_position(0, 1)
                 elif event.key == pygame.K_LEFT or event.key == pygame.K_a:
                     self.move_unit(self.player, [-1, 0])
-                    # old = self.player.update_position(-1, 0)
                 elif event.key == pygame.K_RIGHT or event.key == pygame.K_d:
                     self.move_unit(self.player, [1, 0])
-                    # old = self.player.update_position(1, 0)
                 elif event.key == pygame.K_f:
                     config.gameOrigin = random.randint(1,2)
                     config.gender = "f"
