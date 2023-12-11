@@ -2,7 +2,6 @@ import random
 
 import pygame
 import config
-import math
 import utilities
 from game_state import GlobalGameState
 
@@ -11,6 +10,7 @@ class Battle:
         self.screen = screen
         self.pokemon = pokemon
         self.player = player
+        self.attack_anim = pygame.image.load("imgs/fist.png")
 
     def load(self, file_name):
         pass
@@ -52,4 +52,6 @@ class Battle:
                 if event.key == pygame.K_ESCAPE:
                     self.game.game_state = GlobalGameState.ENDED
                 if event.key == pygame.K_RETURN:
-                    self.pokemon.health = self.pokemon.health - random.randint(1,16)
+                    self.pokemon.health -= random.randint(1, 16)
+                    self.screen.blit(self.attack_anim, (20, 20))
+

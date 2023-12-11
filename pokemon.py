@@ -11,10 +11,10 @@ class Pokemon:
     self.type = pokemon_type
     self.id = id
     self.image = pygame.image.load("imgs/pokemon/" + f"{self.id:03d}" + ".png")
-    self.health = random.randint(50,150)
+    self.health = random.randint(75,175)
     self.totalHealth = self.health
     self.attack = random.randint(50,150)
     self.defense = random.randint(50,150)
     self.specialAttack = random.randint(50,150)
     self.specialDefense = random.randint(50,150)
-    self.speed =  random.randint(50,150)
+    self.speed = random.randint(50,150)

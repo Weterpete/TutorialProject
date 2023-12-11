@@ -44,6 +44,8 @@ class Game:
         elif self.current_game_state == CurrentGameState.BATTLE:
             self.battle.update()
             self.battle.render()
+            if self.battle.pokemon.health <= 0:
+                self.current_game_state = CurrentGameState.MAP
 
     def determine_game_events(self):
         mapTile = self.map.map_array[self.player.position[1]][self.player.position[0]]
