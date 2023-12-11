@@ -1,6 +1,6 @@
 import pygame
 import config
-from game_state import GameState
+from game_state import GlobalGameState
 
 from game import Game
 from menu import Menu
@@ -18,10 +18,10 @@ game = Game(screen)
 menu = Menu(screen, game)
 menu.set_up()
 
-while game.game_state != GameState.ENDED:
+while game.game_state != GlobalGameState.ENDED:
   clock.tick(50)
-  if game.game_state == GameState.NONE:
+  if game.game_state == GlobalGameState.NONE:
     menu.update()
-  if game.game_state == GameState.RUNNING:
+  if game.game_state == GlobalGameState.RUNNING:
     game.update()
   pygame.display.flip()
