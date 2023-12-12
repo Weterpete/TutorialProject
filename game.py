@@ -2,10 +2,12 @@ import pygame
 import config
 import math
 import random
+
+import pokemonfactory
+from pokemonfactory import PokemonFactory
 import utilities
 from player import Player
 from game_state import GlobalGameState, CurrentGameState
-from pokemonfactory import PokemonFactory
 from game_view.map import Map
 from game_view.battle import Battle
 
@@ -20,6 +22,7 @@ class Game:
         self.pokemon_factory = PokemonFactory()
         self.map = Map(screen)
         self.battle = None
+        self.hitList = []
 
     def set_up(self):
         player = Player(1, 26)
@@ -59,6 +62,7 @@ class Game:
 
         if randomNumber <= 1:
             foundPokemon = self.pokemon_factory.create_pokemon(mapTile)
+            self.hitList.append(foundPokemon)
             print("A wild pokemon appeared!")
             print(f"Type: {foundPokemon.type}")
             print(f"Its stats are {foundPokemon.health}, {foundPokemon.attack}, {foundPokemon.defense}, {foundPokemon.specialAttack}, {foundPokemon.specialDefense}, {foundPokemon.speed}")
@@ -90,6 +94,8 @@ class Game:
                     config.gameOrigin = random.randint(1,2)
                     config.gender = "m"
                     print("boy mode")
+                elif event.key == pygame.K_RETURN:
+                    print(f"You have slain {len(self.hitList)} Pokemon.\nThe last one was {self.hitList[:-1]}")
 
     def move_unit(self, unit, position_change):
         new_position = [unit.position[0] + position_change[0], unit.position[1] + position_change[1]]
