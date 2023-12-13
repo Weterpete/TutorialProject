@@ -94,7 +94,7 @@ class Game:
                     config.gameOrigin = random.randint(1,2)
                     config.gender = "m"
                     print("boy mode")
-                elif event.key == pygame.K_RETURN:
+                elif event.key == pygame.K_SPACE:
                     print(f"You have slain {len(self.hitList)} Pokemon.\nThe last one was {self.hitList[:-1]}")
 
     def move_unit(self, unit, position_change):
